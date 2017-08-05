@@ -1,0 +1,6 @@
+select COUNT(Product_ID), Product_ID from Barcode2 group by Product_ID;
+select Barcode2.ID, Barcode2.Product_ID,Barcode2.Barcode_Serial, Barcode2.Color from Barcode2   where Barcode2.Barcode_Serial = '35';
+insert into Barcode2(Barcode_Serial, Date, Color, Product_ID)
+select Barcode_Serial, Date, Color, Product_ID from Barcode
+insert into Gift2(Barcode, [Discount Price], [Gift Code], SL, Customer_Sale_ID)
+select * from GiftBackup

@@ -1,0 +1,15 @@
+﻿<Window Loaded="Window_Loaded"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Point_of_Sale_Orpa_Telecom_v3"
+        xmlns:Viewer="clr-namespace:SAPBusinessObjects.WPF.Viewer;assembly=SAPBusinessObjects.WPF.Viewer" x:Class="Point_of_Sale_Orpa_Telecom_v3.PL.TestWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="735.338" Width="1346.617" WindowState="Maximized">
+    <Grid>
+
+        <Viewer:CrystalReportsViewer x:Name="viewer" HorizontalAlignment="Left" VerticalAlignment="Top" Height="704" Width="1339"/>
+
+    </Grid>
+</Window>

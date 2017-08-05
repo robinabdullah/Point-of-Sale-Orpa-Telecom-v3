@@ -1,0 +1,21 @@
+﻿<Window x:Class="Point_of_Sale_Orpa_Telecom_v3.PL.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Point_of_Sale_Orpa_Telecom_v3.PL"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="550.526" Width="750" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Grid>
+        <Button x:Name="sellProduct" Content="Sell Product" HorizontalAlignment="Center" Margin="297,89,306,377" VerticalAlignment="Center" Width="139" Height="54" FontSize="16" Click="sellProduct_Click"/>
+        <Button x:Name="purchaseProduct" Content="Purchase Product" HorizontalAlignment="Center" Margin="95,185,508,281" VerticalAlignment="Center" Width="139" Height="54" FontSize="16" Click="purchaseProduct_Click"/>
+        <Button x:Name="searchProduct" Content="Search Product" HorizontalAlignment="Center" Margin="95,311,508,155" VerticalAlignment="Center"  Width="139" Height="54" FontSize="16" Click="searchProduct_Click"/>
+        <Button x:Name="products" Content="Products" HorizontalAlignment="Center" Margin="489,185,114,281" VerticalAlignment="Center"  Width="139" Height="54" FontSize="16" Click="products_Click"/>
+        <Button x:Name="settings" Content="Settings" HorizontalAlignment="Center" Margin="489,311,114,155" VerticalAlignment="Center"  Width="139" Height="54" FontSize="16" Click="settings_Click"/>
+        <Button x:Name="reports" Content="Reports" HorizontalAlignment="Center" Margin="297,407,306,57" VerticalAlignment="Center"  Width="139" Height="56" FontSize="16" Click="reports_Click"/>
+        <Label x:Name="label" Content="Copy Right 2017  Friends Software Solution. Call for Support 01676797123" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="476" FontWeight="Bold"/>
+        <Label x:Name="welcome" Content="Welcome" HorizontalAlignment="Center" Margin="193,10,202,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold" FontFamily="Times New Roman"/>
+        <Button x:Name="logout" Content="Logout" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="50" Click="logout_Click"/>
+        <Label x:Name="username" Content="Logged in as, " HorizontalAlignment="Right" Margin="0,36,16,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>
