@@ -1,0 +1,19 @@
+﻿<Window x:Class="Point_of_Sale_Orpa_Telecom_v3.PL.Payment"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Point_of_Sale_Orpa_Telecom_v3.PL"
+        mc:Ignorable="d"
+        Title="Payment" Height="486.72" Width="750" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <StackPanel  HorizontalAlignment="Left" Height="318" Margin="76,48,0,0" VerticalAlignment="Top" Width="570">
+            <Button x:Name="customer" Content="Customer" Click="customer_Click" Height="31" FontSize="14"/>
+            <Separator Opacity="0" Height="5"/>
+            <Button x:Name="supplier" Content="Supplier" Click="supplier_Click" Height="31" FontSize="14"/>
+            <Separator Opacity="0" Height="5"/>
+            <Button x:Name="bank" Content="Bank" Click="bank_Click" Height="31" FontSize="14"/>
+            <Separator Opacity="0" Height="5"/>
+            </StackPanel>
+    </Grid>
+</Window>

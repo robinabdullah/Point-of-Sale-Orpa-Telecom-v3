@@ -149,6 +149,9 @@
     <Compile Include="PL\Billing.xaml.cs">
       <DependentUpon>Billing.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PL\CustomerPayment.xaml.cs">
+      <DependentUpon>CustomerPayment.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PL\Date to Date.xaml.cs">
       <DependentUpon>Date to Date.xaml</DependentUpon>
     </Compile>
@@ -160,6 +163,9 @@
     </Compile>
     <Compile Include="PL\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PL\Payment.xaml.cs">
+      <DependentUpon>Payment.xaml</DependentUpon>
     </Compile>
     <Compile Include="PL\Product Type Add.xaml.cs">
       <DependentUpon>Product Type Add.xaml</DependentUpon>
@@ -196,6 +202,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="PL\CustomerPayment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PL\Date to Date.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -211,6 +221,10 @@
     <Page Include="PL\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PL\Payment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PL\Product Type Add.xaml">
       <Generator>MSBuild:Compile</Generator>

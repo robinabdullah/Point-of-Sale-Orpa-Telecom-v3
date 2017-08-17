@@ -108,5 +108,10 @@ namespace Point_of_Sale_Orpa_Telecom_v3.PL
             login.Show();
             this.Close();
         }
+
+        private void payment_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

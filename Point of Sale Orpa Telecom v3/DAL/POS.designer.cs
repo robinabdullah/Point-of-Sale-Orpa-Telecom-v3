@@ -63,9 +63,6 @@ namespace Point_of_Sale_Orpa_Telecom_v3.DAL
     partial void InsertMain_Account(Main_Account instance);
     partial void UpdateMain_Account(Main_Account instance);
     partial void DeleteMain_Account(Main_Account instance);
-    partial void InsertPayment(Payment instance);
-    partial void UpdatePayment(Payment instance);
-    partial void DeletePayment(Payment instance);
     partial void InsertProduct(Product instance);
     partial void UpdateProduct(Product instance);
     partial void DeleteProduct(Product instance);
@@ -84,6 +81,9 @@ namespace Point_of_Sale_Orpa_Telecom_v3.DAL
     partial void InsertSupport(Support instance);
     partial void UpdateSupport(Support instance);
     partial void DeleteSupport(Support instance);
+    partial void InsertPayment(Payment instance);
+    partial void UpdatePayment(Payment instance);
+    partial void DeletePayment(Payment instance);
     #endregion
 		
 		public POSDataContext() : 
@@ -204,14 +204,6 @@ namespace Point_of_Sale_Orpa_Telecom_v3.DAL
 			}
 		}
 		
-		public System.Data.Linq.Table<Payment> Payments
-		{
-			get
-			{
-				return this.GetTable<Payment>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Product> Products
 		{
 			get
@@ -257,6 +249,14 @@ namespace Point_of_Sale_Orpa_Telecom_v3.DAL
 			get
 			{
 				return this.GetTable<Support>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Payment> Payments
+		{
+			get
+			{
+				return this.GetTable<Payment>();
 			}
 		}
 	}
@@ -2195,13 +2195,13 @@ namespace Point_of_Sale_Orpa_Telecom_v3.DAL
 		
 		private EntitySet<Journal_Detail> _Journal_Details;
 		
-		private EntitySet<Payment> _Payments;
-		
 		private EntitySet<Product_Supplier> _Product_Suppliers;
 		
 		private EntitySet<Sale> _Sales;
 		
 		private EntitySet<Support> _Supports;
+		
+		private EntitySet<Payment> _Payments;
 		
 		private EntityRef<Login> _Login;
 		
@@ -2232,10 +2232,10 @@ namespace Point_of_Sale_Orpa_Telecom_v3.DAL
 		public Journal()
 		{
 			this._Journal_Details = new EntitySet<Journal_Detail>(new Action<Journal_Detail>(this.attach_Journal_Details), new Action<Journal_Detail>(this.detach_Journal_Details));
-			this._Payments = new EntitySet<Payment>(new Action<Payment>(this.attach_Payments), new Action<Payment>(this.detach_Payments));
 			this._Product_Suppliers = new EntitySet<Product_Supplier>(new Action<Product_Supplier>(this.attach_Product_Suppliers), new Action<Product_Supplier>(this.detach_Product_Suppliers));
 			this._Sales = new EntitySet<Sale>(new Action<Sale>(this.attach_Sales), new Action<Sale>(this.detach_Sales));
 			this._Supports = new EntitySet<Support>(new Action<Support>(this.attach_Supports), new Action<Support>(this.detach_Supports));
+			this._Payments = new EntitySet<Payment>(new Action<Payment>(this.attach_Payments), new Action<Payment>(this.detach_Payments));
 			this._Login = default(EntityRef<Login>);
 			this._Login1 = default(EntityRef<Login>);
 			this._Sub_Account = default(EntityRef<Sub_Account>);
@@ -2407,19 +2407,6 @@ namespace Point_of_Sale_Orpa_Telecom_v3.DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Journal_Payment", Storage="_Payments", ThisKey="ID", OtherKey="Journal_ID")]
-		public EntitySet<Payment> Payments
-		{
-			get
-			{
-				return this._Payments;
-			}
-			set
-			{
-				this._Payments.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Journal_Product_Supplier", Storage="_Product_Suppliers", ThisKey="ID", OtherKey="Journal_ID")]
 		public EntitySet<Product_Supplier> Product_Suppliers
 		{
@@ -2456,6 +2443,19 @@ namespace Point_of_Sale_Orpa_Telecom_v3.DAL
 			set
 			{
 				this._Supports.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Journal_Payment", Storage="_Payments", ThisKey="ID", OtherKey="Journal_ID")]
+		public EntitySet<Payment> Payments
+		{
+			get
+			{
+				return this._Payments;
+			}
+			set
+			{
+				this._Payments.Assign(value);
 			}
 		}
 		
@@ -2593,18 +2593,6 @@ namespace Point_of_Sale_Orpa_Telecom_v3.DAL
 			entity.Journal = null;
 		}
 		
-		private void attach_Payments(Payment entity)
-		{
-			this.SendPropertyChanging();
-			entity.Journal = this;
-		}
-		
-		private void detach_Payments(Payment entity)
-		{
-			this.SendPropertyChanging();
-			entity.Journal = null;
-		}
-		
 		private void attach_Product_Suppliers(Product_Supplier entity)
 		{
 			this.SendPropertyChanging();
@@ -2636,6 +2624,18 @@ namespace Point_of_Sale_Orpa_Telecom_v3.DAL
 		}
 		
 		private void detach_Supports(Support entity)
+		{
+			this.SendPropertyChanging();
+			entity.Journal = null;
+		}
+		
+		private void attach_Payments(Payment entity)
+		{
+			this.SendPropertyChanging();
+			entity.Journal = this;
+		}
+		
+		private void detach_Payments(Payment entity)
 		{
 			this.SendPropertyChanging();
 			entity.Journal = null;
@@ -3437,205 +3437,6 @@ namespace Point_of_Sale_Orpa_Telecom_v3.DAL
 		{
 			this.SendPropertyChanging();
 			entity.Main_Account = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Payment")]
-	public partial class Payment : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private string _Mode;
-		
-		private System.Nullable<int> _Journal_ID;
-		
-		private System.Nullable<decimal> _Amount;
-		
-		private System.Nullable<System.DateTime> _Date;
-		
-		private EntityRef<Journal> _Journal;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnModeChanging(string value);
-    partial void OnModeChanged();
-    partial void OnJournal_IDChanging(System.Nullable<int> value);
-    partial void OnJournal_IDChanged();
-    partial void OnAmountChanging(System.Nullable<decimal> value);
-    partial void OnAmountChanged();
-    partial void OnDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnDateChanged();
-    #endregion
-		
-		public Payment()
-		{
-			this._Journal = default(EntityRef<Journal>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mode", DbType="VarChar(50)")]
-		public string Mode
-		{
-			get
-			{
-				return this._Mode;
-			}
-			set
-			{
-				if ((this._Mode != value))
-				{
-					this.OnModeChanging(value);
-					this.SendPropertyChanging();
-					this._Mode = value;
-					this.SendPropertyChanged("Mode");
-					this.OnModeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Journal_ID", DbType="Int")]
-		public System.Nullable<int> Journal_ID
-		{
-			get
-			{
-				return this._Journal_ID;
-			}
-			set
-			{
-				if ((this._Journal_ID != value))
-				{
-					if (this._Journal.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnJournal_IDChanging(value);
-					this.SendPropertyChanging();
-					this._Journal_ID = value;
-					this.SendPropertyChanged("Journal_ID");
-					this.OnJournal_IDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Amount", DbType="Money")]
-		public System.Nullable<decimal> Amount
-		{
-			get
-			{
-				return this._Amount;
-			}
-			set
-			{
-				if ((this._Amount != value))
-				{
-					this.OnAmountChanging(value);
-					this.SendPropertyChanging();
-					this._Amount = value;
-					this.SendPropertyChanged("Amount");
-					this.OnAmountChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Date
-		{
-			get
-			{
-				return this._Date;
-			}
-			set
-			{
-				if ((this._Date != value))
-				{
-					this.OnDateChanging(value);
-					this.SendPropertyChanging();
-					this._Date = value;
-					this.SendPropertyChanged("Date");
-					this.OnDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Journal_Payment", Storage="_Journal", ThisKey="Journal_ID", OtherKey="ID", IsForeignKey=true)]
-		public Journal Journal
-		{
-			get
-			{
-				return this._Journal.Entity;
-			}
-			set
-			{
-				Journal previousValue = this._Journal.Entity;
-				if (((previousValue != value) 
-							|| (this._Journal.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Journal.Entity = null;
-						previousValue.Payments.Remove(this);
-					}
-					this._Journal.Entity = value;
-					if ((value != null))
-					{
-						value.Payments.Add(this);
-						this._Journal_ID = value.ID;
-					}
-					else
-					{
-						this._Journal_ID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Journal");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 	
@@ -5236,6 +5037,181 @@ namespace Point_of_Sale_Orpa_Telecom_v3.DAL
 					else
 					{
 						this._Voucher_ID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Journal");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Payment")]
+	public partial class Payment : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _Payment_For_Whom;
+		
+		private System.Nullable<int> _Payment_For_ID;
+		
+		private System.Nullable<int> _Journal_ID;
+		
+		private EntityRef<Journal> _Journal;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnPayment_For_WhomChanging(string value);
+    partial void OnPayment_For_WhomChanged();
+    partial void OnPayment_For_IDChanging(System.Nullable<int> value);
+    partial void OnPayment_For_IDChanged();
+    partial void OnJournal_IDChanging(System.Nullable<int> value);
+    partial void OnJournal_IDChanged();
+    #endregion
+		
+		public Payment()
+		{
+			this._Journal = default(EntityRef<Journal>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Payment_For_Whom", DbType="VarChar(10)")]
+		public string Payment_For_Whom
+		{
+			get
+			{
+				return this._Payment_For_Whom;
+			}
+			set
+			{
+				if ((this._Payment_For_Whom != value))
+				{
+					this.OnPayment_For_WhomChanging(value);
+					this.SendPropertyChanging();
+					this._Payment_For_Whom = value;
+					this.SendPropertyChanged("Payment_For_Whom");
+					this.OnPayment_For_WhomChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Payment_For_ID", DbType="Int")]
+		public System.Nullable<int> Payment_For_ID
+		{
+			get
+			{
+				return this._Payment_For_ID;
+			}
+			set
+			{
+				if ((this._Payment_For_ID != value))
+				{
+					this.OnPayment_For_IDChanging(value);
+					this.SendPropertyChanging();
+					this._Payment_For_ID = value;
+					this.SendPropertyChanged("Payment_For_ID");
+					this.OnPayment_For_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Journal_ID", DbType="Int")]
+		public System.Nullable<int> Journal_ID
+		{
+			get
+			{
+				return this._Journal_ID;
+			}
+			set
+			{
+				if ((this._Journal_ID != value))
+				{
+					if (this._Journal.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnJournal_IDChanging(value);
+					this.SendPropertyChanging();
+					this._Journal_ID = value;
+					this.SendPropertyChanged("Journal_ID");
+					this.OnJournal_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Journal_Payment", Storage="_Journal", ThisKey="Journal_ID", OtherKey="ID", IsForeignKey=true)]
+		public Journal Journal
+		{
+			get
+			{
+				return this._Journal.Entity;
+			}
+			set
+			{
+				Journal previousValue = this._Journal.Entity;
+				if (((previousValue != value) 
+							|| (this._Journal.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Journal.Entity = null;
+						previousValue.Payments.Remove(this);
+					}
+					this._Journal.Entity = value;
+					if ((value != null))
+					{
+						value.Payments.Add(this);
+						this._Journal_ID = value.ID;
+					}
+					else
+					{
+						this._Journal_ID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Journal");
 				}

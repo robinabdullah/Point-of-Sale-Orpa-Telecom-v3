@@ -763,8 +763,8 @@ namespace Point_of_Sale_Orpa_Telecom_v3.PL
             try
             {
                 ///Console.WriteLine(customer.Name + listCustomerSale.Count );
-                //Customer_Sale cc = listCustomerSale.First();
-                //Console.WriteLine(cc.Product.Model);
+                ///Customer_Sale cc = listCustomerSale.First();
+                ///Console.WriteLine(cc.Product.Model);
                 Sale sale =  Bill.createBill(listCustomerSale, customer,listFree_Product, datetime);
 
                 int amount = (int)listCustomerSale.Sum(eee => eee.Sold_Price * eee.Quantity);
